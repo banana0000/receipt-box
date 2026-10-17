@@ -1,10 +1,23 @@
+# Two paid services: the web app and a private Ollama (Gemma 3 4B needs ~4-5 GB RAM, hence "pro plus").
 services:
+  - type: pserv
+    name: ollama
+    runtime: docker
+    dockerfilePath: ./ollama/Dockerfile
+    dockerContext: ./ollama
+    plan: pro plus
+
   - type: web
     name: receipt-box
     runtime: python
-    plan: free
+    plan: starter
     buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn app:server --bind 0.0.0.0:$PORT --timeout 120
+    startCommand: gunicorn app:server --bind 0.0.0.0:$PORT --timeout 180
     envVars:
       - key: PYTHON_VERSION
         value: 3.12.7
+      - key: OLLAMA_URL
+        fromService:
+          type: pserv
+          name: ollama
+          property: hostport

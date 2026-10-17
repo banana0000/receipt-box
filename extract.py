@@ -9,6 +9,8 @@ import os
 import requests
 
 OLLAMA_URL = os.getenv("OLLAMA_URL", "http://localhost:11434")
+if not OLLAMA_URL.startswith("http"):  # Render hands over a bare "host:port"
+    OLLAMA_URL = f"http://{OLLAMA_URL}"
 MODEL = os.getenv("RECEIPT_MODEL", "gemma3:4b")
 CATEGORIES = ["Software", "Hardware", "Travel", "Meals", "Office", "Marketing", "Services", "Other"]
 
