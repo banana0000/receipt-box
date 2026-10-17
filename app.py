@@ -47,6 +47,7 @@ app.layout = html.Div([
         dcc.Checklist(id="opt-items", options=[{"label": " Also read line items (slower)", "value": "on"}],
                       value=[], className="opt"),
     ], className="row"),
+    html.Div(html.Div(id="bar-fill", className="bar-fill"), id="bar", className="bar", style={"display": "none"}),
     html.Div(id="progress", className="progress"),
     html.Div([html.Span("Currency", className="sub"), dcc.Dropdown(id="cur", clearable=False, className="cur")],
              id="cur-row", className="row", style={"display": "none"}),
@@ -103,6 +104,15 @@ def enqueue(contents, names, queue):
 app.clientside_callback(
     "function(q) { return !(q && q.items && q.items.length > 0); }",
     Output("tick", "disabled"), Input("queue", "data"))
+
+
+app.clientside_callback(
+    """function(q) {
+        if (!q || !q.items || !q.items.length) { return [{display: 'none'}, {width: '0%'}]; }
+        var pct = Math.max(8, Math.round(100 * q.done / q.total));
+        return [{display: 'block'}, {width: pct + '%'}];
+    }""",
+    Output("bar", "style"), Output("bar-fill", "style"), Input("queue", "data"))
 
 
 @app.callback(Output("records", "data"), Output("queue", "data", allow_duplicate=True),

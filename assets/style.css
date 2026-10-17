@@ -33,7 +33,11 @@ h1 { margin: 0; }
 .btn-clear:hover { border-color: #f85149; color: #f85149; }
 
 /* progress, notes, currency picker, line-items toggle */
-.progress { color: var(--accent); min-height: 20px; margin: 4px 0; }
+.progress { color: var(--accent); min-height: 20px; margin: 4px 0; font-weight: 600; }
+.bar { height: 6px; background: var(--panel); border: 1px solid var(--border); border-radius: 4px; overflow: hidden; margin: 8px 0 2px; }
+.bar-fill { height: 100%; background: linear-gradient(90deg, var(--accent), #ffc266, var(--accent)); background-size: 200% 100%;
+  border-radius: 4px; transition: width .4s; animation: bar-shimmer 1.2s linear infinite; }
+@keyframes bar-shimmer { from { background-position: 200% 0; } to { background-position: 0 0; } }
 .notes .warn { color: #e0a458; margin: 4px 0; }
 .h3 { margin: 20px 0 6px; font-size: 16px; }
 .opt { color: var(--muted); align-self: center; font-size: 13px; }
