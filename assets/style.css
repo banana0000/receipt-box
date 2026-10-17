@@ -1,7 +1,7 @@
 :root {
-  --bg: #0d1117;
-  --panel: #161b22;
-  --border: #30363d;
+  --bg: #000000;
+  --panel: #0b0b0b;
+  --border: #2a2a2a;
   --text: #e6edf3;
   --muted: #8b949e;
   --accent: #ff9f1a;
@@ -11,7 +11,7 @@ body { font-family: system-ui, sans-serif; margin: 0; background: var(--bg); col
 h1 { margin: 0; }
 .sub { color: var(--muted); margin-top: 4px; }
 .kpis { display: flex; gap: 12px; flex-wrap: wrap; margin: 16px 0; }
-.kpi { background: var(--panel); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; flex: 1 1 140px; }
+.kpi { background: var(--panel); border: 1px solid var(--border); border-left: 4px solid var(--accent); border-radius: 8px; padding: 12px 16px; flex: 1 1 140px; }
 .kpi-value { font-size: 24px; font-weight: 600; }
 .kpi-label { font-size: 12px; color: var(--muted); }
 
@@ -30,3 +30,37 @@ h1 { margin: 0; }
 .half { flex: 1 1 420px; }
 .btn { background: var(--panel); color: var(--text); border: 1px solid var(--border); border-radius: 6px; padding: 8px 14px; cursor: pointer; }
 .btn:hover { border-color: var(--accent); }
+.btn-clear:hover { border-color: #f85149; color: #f85149; }
+
+/* progress, notes, currency picker, line-items toggle */
+.progress { color: var(--accent); min-height: 20px; margin: 4px 0; }
+.notes .warn { color: #e0a458; margin: 4px 0; }
+.h3 { margin: 20px 0 6px; font-size: 16px; }
+.opt { color: var(--muted); align-self: center; font-size: 13px; }
+.cur { min-width: 120px; color: var(--text); }
+.row { align-items: center; }
+/* dropdowns (currency picker and the category cell editor): pure black */
+.Select, .Select-control, .Select-menu-outer, .Select-menu, .Select-option, .Select-input > input,
+.VirtualizedSelectOption, .Select--single > .Select-control .Select-value, .dash-dropdown, .dash-dropdown * {
+  background: #000000 !important; background-color: #000000 !important; color: var(--text) !important; }
+.Select-control, .Select-menu-outer { border-color: var(--border) !important; }
+.Select-value-label, .Select-placeholder { color: var(--text) !important; }
+.Select-option.is-focused, .VirtualizedSelectFocusedOption, .Select-option:hover {
+  background: #1f1f1f !important; background-color: #1f1f1f !important; }
+.Select-arrow { border-top-color: var(--muted) !important; }
+
+/* hide the DataTable "Toggle Columns" button (the id column stays hidden) */
+.show-hide { display: none !important; }
+
+/* Dash 4 dropdown (currency picker): the open list is a popover rendered at the page root */
+:root {
+  --Dash-Fill-Inverse-Strong: #000000;
+  --Dash-Text-Strong: #e6edf3;
+  --Dash-Stroke-Strong: #2a2a2a;
+  --Dash-Fill-Disabled: #1f1f1f;
+}
+.dash-dropdown-trigger, .dash-dropdown-content, .dash-dropdown-options, .dash-dropdown-option,
+.dash-dropdown-search-container, .dash-options-list-virtualized {
+  background: #000000 !important; color: var(--text) !important; border-color: var(--border) !important; }
+.dash-dropdown-option:hover, .dash-dropdown-option:focus-within { background: #1f1f1f !important; }
+.dash-dropdown-search { color: var(--text) !important; }
